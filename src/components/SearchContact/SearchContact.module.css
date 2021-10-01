@@ -1,0 +1,20 @@
+.label {
+  display: flex;
+  gap: 17px;
+  align-items: center;
+}
+
+.input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.filledCorrect {
+  background-color: rgb(105, 182, 105);
+}
+
+.filledError {
+  background-color: rgb(240, 90, 90);
+}
