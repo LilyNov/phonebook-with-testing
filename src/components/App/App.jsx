@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import defaultContacts from '../../defaultContacts'
 import SearchContact from '../SearchContact'
 import ContactList from '../ContactsList'
+import News from '../News'
 import './App.css';
 
 const App = () => {
@@ -24,8 +25,9 @@ setContacts(defaultContacts.filter(listOfContacts => listOfContacts.name.toLower
         <SearchContact value={search} onChange={(e) => setSearch(e.currentTarget.value)}>
           Search contact:
         </SearchContact>
-        <ContactList contacts={contacts} deleteContact={ deleteContact}/>
+        <ContactList contacts={contacts} handleDeleteContact={ deleteContact}/>
       </div>
+      <News />
     </div>
   );
 };

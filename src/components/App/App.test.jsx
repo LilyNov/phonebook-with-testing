@@ -5,8 +5,8 @@ import App from './App'
 describe('App component', () => {
     it('App renders', () => {
         render(<App />)
-        expect(screen.queryByRole('list')).toBeInTheDocument()
-        expect(screen.getByText(/earch contact/i)).toBeInTheDocument()
+        expect(screen.getByTestId('list-of-contacts')).toBeInTheDocument()
+        expect(screen.getByText(/search contact/i)).toBeInTheDocument()
     })
 
     it('Typing in searchbox works', () => {
@@ -24,5 +24,10 @@ describe('App component', () => {
         userEvent.type(screen.getByRole('textbox'), 'Eden')
         expect(screen.queryByText(/Hermione Kline/i)).toBeNull()
         expect(screen.queryByText(/Eden Clements/i)).toBeInTheDocument()
+    })
+
+    it('Button fetch news renders', () => {
+        render(<App />)
+        expect(screen.getByTestId('btn-fetch-news')).toBeInTheDocument()
     })
 })
