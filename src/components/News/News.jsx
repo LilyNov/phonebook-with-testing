@@ -24,13 +24,13 @@ const News = () => {
 
       {error && <span>Something went wrong ...</span>}
 
-      {news && <ul data-testid='list-of-news'>
+      <ul data-testid='list-of-news'>
         {news.map(({ objectID, url, title }) => (
-          <li key={objectID}>
+          <li key={objectID} data-testid='item-of-news'>
             <a href={url}>{title}</a>
           </li>
         ))}
-      </ul>}
+      </ul>
     </div>
   );
 };
