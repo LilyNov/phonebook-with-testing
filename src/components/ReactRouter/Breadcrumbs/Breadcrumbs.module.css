@@ -1,0 +1,23 @@
+.breadcrumbs {
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  background-color: #e2e3ec;
+  border-radius: 10px;
+  color: #2a363b;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 2px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #606dbc;
+  text-transform: capitalize;
+}
+
+span {
+  padding: 2px;
+  text-transform: capitalize;
+}

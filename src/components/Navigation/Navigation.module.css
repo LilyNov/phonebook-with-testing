@@ -1,0 +1,18 @@
+.nav {
+  border-bottom: 1px solid #2a363b;
+  margin-bottom: 30px;
+}
+
+.navLink {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 18px;
+  font-size: 18px;
+  color: #2a363b;
+}
+
+.activNavLink {
+  composes: navLink;
+  color: #465298;
+}
