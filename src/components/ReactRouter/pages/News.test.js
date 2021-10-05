@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import About from "./About";
+import News from "./News";
 
-describe("About page component", () => {
+describe("News page component", () => {
   it("Button fetch news renders", () => {
-    render(<About />);
+    render(<News />);
     expect(screen.getByTestId("btn-fetch-news")).toBeInTheDocument();
   });
 });

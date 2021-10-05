@@ -20,8 +20,8 @@ describe('ReactRouter component renders', () => {
         expect(screen.getByTestId('home-page')).toBeInTheDocument()
         const leftClick = { button: 0 }
 
-        userEvent.click(screen.getByText(/about/i), leftClick)
-        expect(screen.getByTestId('about-page')).toBeInTheDocument()
+        userEvent.click(screen.getByText(/news/i), leftClick)
+        expect(screen.getByTestId('news-page')).toBeInTheDocument()
     })
 
     it('No match page renders', () => {

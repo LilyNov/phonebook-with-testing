@@ -3,7 +3,7 @@ import axios from "axios";
 
 const URL = "http://hn.algolia.com/api/v1/search";
 
-const News = () => {
+const NewsRender = () => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
 
@@ -35,4 +35,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default NewsRender;

@@ -9,7 +9,7 @@ const Home = () => {
   const [search, setSearch] = useState('')
 
 useEffect(() => {
-setContacts(defaultContacts.filter(listOfContacts => listOfContacts.name.toLowerCase().includes(search.toLowerCase())))
+setContacts(defaultContacts.filter(({name, number}) => name.toLowerCase().includes(search.toLowerCase()) || number.includes(search)))
   
 }, [search])
 

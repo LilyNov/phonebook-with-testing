@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { render, act, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import News from './News'
+import NewsRender from './NewsRender'
 
 jest.mock('axios')
 
@@ -16,7 +16,7 @@ describe('News component', () => {
     it('fetch news successe', async () => {
         const promise = Promise.resolve({ data: { hits } })
         axios.get.mockImplementationOnce(() => promise)
-        render(<News />)
+        render(<NewsRender />)
         
         userEvent.click(screen.getByTestId('btn-fetch-news'))
 
@@ -29,13 +29,13 @@ describe('News component', () => {
 
     it('fetch news error', async () => {
         axios.get.mockImplementationOnce(() => Promise.reject(new Error()));
-        render(<News />)
+        render(<NewsRender />)
         
         userEvent.click(screen.getByTestId('btn-fetch-news'))
         
         const message = await screen.findByText(/Something went wrong/);
         expect(message).toBeInTheDocument();
         expect(screen.queryByTestId('item-of-news')).toBeNull()
-        screen.debug()
+
     })
 })
