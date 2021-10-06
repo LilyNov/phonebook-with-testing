@@ -1,28 +1,37 @@
-import { useState, useEffect } from 'react'
-import defaultContacts from '../../../defaultContacts'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import SearchContact from '../../SearchContact'
 import ContactList from '../../ContactsList'
+import ContactForm from '../../ContactForm'
+import { addContact, deleteContact, filterContacts } from '../../../redux/contacts/contactsActions'
+import {filterContactsByName, getValueForSearch} from '../../../redux/contacts/contactsSelectors'
 
 
 const Home = () => {
-    const [contacts, setContacts] = useState(defaultContacts)
-  const [search, setSearch] = useState('')
+  const contactsFromStore = useSelector(filterContactsByName)
+  const valueForSearchContact = useSelector(getValueForSearch)
+  const dispatch = useDispatch()
 
-useEffect(() => {
-setContacts(defaultContacts.filter(({name, number}) => name.toLowerCase().includes(search.toLowerCase()) || number.includes(search)))
-  
-}, [search])
+  const handleFilterContacts = (e) => {
+    dispatch(filterContacts(e.currentTarget.value))
+  }
 
-  const deleteContact = (id) => {
-    setContacts(contacts.filter(contact => contact.id !== id));
+  const formSubmitHandler = (name, number) => {
+    dispatch(addContact(name, number))
+  };
+
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id))
   }
 
   return (
-      <div data-testid='home-page'>
-        <SearchContact value={search} onChange={(e) => setSearch(e.currentTarget.value)}>
+    <div data-testid='home-page'>
+        <ContactForm OnSaveContacts={formSubmitHandler} />
+        <SearchContact value={valueForSearchContact} onChange={handleFilterContacts}>
           Search contact:
         </SearchContact>
-        <ContactList contacts={contacts} handleDeleteContact={ deleteContact}/>
+        <ContactList contacts={contactsFromStore} handleDeleteContact={ handleDeleteContact}/>
       </div>)
 }
 export default Home

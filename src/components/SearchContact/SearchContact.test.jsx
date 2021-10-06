@@ -56,5 +56,5 @@ describe('SearchContact component', () => {
     expect(screen.getByRole('textbox')).toHaveClass('input')
     expect(screen.getByRole('textbox')).toHaveClass('filledError')
 
-  })
+   })
 });

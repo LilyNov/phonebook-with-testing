@@ -1,7 +1,7 @@
 import styles from './SearchContact.module.css'
 import cn from 'classnames'
 
-const SearchContact = ({ value, onChange, children = 'Search', placeholder = 'Search...' }) => {
+const SearchContact = ({value, onChange, children = 'Search', placeholder = 'Search...' }) => {
     const inputClass = cn({
         [styles.input]: true,
         [styles.filledCorrect]: value.length >= 2,
@@ -17,6 +17,7 @@ const SearchContact = ({ value, onChange, children = 'Search', placeholder = 'Se
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
+                data-testid='input-searchContact'
             />
         </label>
     )
