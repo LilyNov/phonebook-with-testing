@@ -1,11 +1,11 @@
-import styles from './SearchContact.module.css'
+import styles from './SearchComponent.module.css'
 import cn from 'classnames'
 
-const SearchContact = ({value, onChange, children = 'Search', placeholder = 'Search...' }) => {
+const SearchComponent = ({value, onChange, children = 'Search', placeholder = 'Search...' }) => {
     const inputClass = cn({
         [styles.input]: true,
-        [styles.filledCorrect]: value.length >= 2,
-        [styles.filledError]: value.length === 1,
+        [styles.filledCorrect]: value?.length >= 2,
+        [styles.filledError]: value?.length === 1,
     })
     
     return (
@@ -23,4 +23,4 @@ const SearchContact = ({value, onChange, children = 'Search', placeholder = 'Sea
     )
 }
 
-export default SearchContact 
+export default SearchComponent 

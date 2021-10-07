@@ -3,6 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
+import { Provider } from "react-redux";
+import store from "../../redux/store";
 import ReactRouter from './ReactRouter'
 
 // helper function
@@ -15,7 +17,11 @@ const renderWithRouter = (ui, {route = '/'} = {}) => {
 // tests
 describe('ReactRouter component renders', () => {
     it('home and about page renders', () => {
-        renderWithRouter(<ReactRouter />)
+        renderWithRouter(
+            <Provider store={store}>
+                <ReactRouter />
+            </Provider>
+                )
         
         expect(screen.getByTestId('home-page')).toBeInTheDocument()
         const leftClick = { button: 0 }
@@ -25,7 +31,11 @@ describe('ReactRouter component renders', () => {
     })
 
     it('No match page renders', () => {
-        renderWithRouter(<ReactRouter /> , {route: '/some/bad/route'})
+        renderWithRouter(
+            <Provider store={store}>
+                <ReactRouter />
+            </Provider>,
+            { route: '/some/bad/route' })
         expect(screen.getByTestId('no-match-page')).toBeInTheDocument()
     })
 })

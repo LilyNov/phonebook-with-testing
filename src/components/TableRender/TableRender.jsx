@@ -1,9 +1,12 @@
 import React, { useMemo, useState, useEffect } from 'react'
-import { useTable } from 'react-table'
+import { useTable, useSortBy, useGlobalFilter, useRowSelect } from 'react-table'
 import { Table } from 'reactstrap';
+import SearchComponent from '../SearchComponent'
+import Checkbox from './Checkbox'
 
 const TableRender = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  
   useEffect(() => {
     const doFetch = async () => {
       const response = await fetch('https://randomuser.me/api/?results=100');
@@ -14,7 +17,7 @@ const TableRender = () => {
     };
     doFetch();
   }, []);
-    
+
     const columns = useMemo(
     () => [
       {
@@ -43,20 +46,48 @@ const TableRender = () => {
     
 
     const {
-   getTableProps,
-   getTableBodyProps,
-   headerGroups,
-   rows,
-   prepareRow,
-    } =  useTable({ columns, data })
+      getTableProps,
+      getTableBodyProps,
+      headerGroups,
+      rows,
+      prepareRow,
+      state,
+      setGlobalFilter,
+      selectedFlatRows
+    } = useTable({ columns, data }, useGlobalFilter, useSortBy, useRowSelect, hooks => {
+      hooks.visibleColumns.push(colums => {
+        return [{
+          id: 'selection',
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <Checkbox {...getToggleAllRowsSelectedProps()}/>
+          ) ,
+          Cell: ({ row }) => (
+            <Checkbox {...row.getToggleRowSelectedProps()}/>
+          )
+        },
+        ...colums
+        ]
+    })
+  })
+  
+  const {globalFilter} = state
     
-    return (
+  return (
+    <>
+      <SearchComponent value={globalFilter} onChange={(e) => setGlobalFilter(e.currentTarget.value)}>
+        Search for table:
+      </SearchComponent>
+      
    <Table bordered hover {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+              <span>
+                    {column.isSorted ? column.isSortedDesc ? ' 🔽' : ' 🔼' : ' 🔽🔼'}
+                  </span>
+              </th>
             ))}
           </tr>
         ))}
@@ -73,8 +104,22 @@ const TableRender = () => {
             </tr>
           );
         })}
-      </tbody>
-    </Table>
+        </tbody>
+      </Table>
+
+      {/* для наглядности чекбокса */}
+      <pre>
+          <code>
+            {JSON.stringify(
+              {
+              selectedFlatRows: selectedFlatRows.map(row => row.original)
+              },
+              null,
+              2
+            )}
+          </code>
+        </pre>
+      </>
  )
 }
 
