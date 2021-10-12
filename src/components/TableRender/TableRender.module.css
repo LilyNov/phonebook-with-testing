@@ -1,0 +1,76 @@
+.table {
+}
+
+.rowHeader {
+  display: inline;
+  display: grid;
+  grid-template-columns: [checkbox]50px 180px [title]100px [name]250px [last-name]250px [email]250px 150px 150px [gender] 180px;
+  /* grid-template-rows: [checkbox]50px 50px [title]50px [name]50px [last-name]50px [email]50px 50px 50px [main] 50px; */
+}
+
+.rowBody {
+  display: inline;
+  display: grid;
+  grid-template-columns: [checkbox]50px 180px [title]100px [name]250px [last-name]250px [email]250px 150px 150px [gender] 180px;
+  /* grid-template-rows: [checkbox]50px 50px [title]50px [name]50px [last-name]50px [email]50px 50px 50px [main] 50px; */
+}
+
+.tableHeader {
+  display: grid;
+}
+
+.cellHeader:last-child {
+  position: sticky;
+  right: 0;
+  padding: 7px;
+
+  background-color: tomato;
+}
+
+.cellBody:last-child {
+  position: sticky;
+  right: 0;
+  padding: 7px;
+
+  background-color: tomato;
+}
+
+.tableBody {
+  display: grid;
+}
+
+.rowBody:last-child {
+  /* border-right: 0; */
+  /* position: absolute;
+  right: 0;
+  z-index: 10; */
+  /* background-color: rgb(112, 51, 51); */
+}
+
+tr:not(:last-child) {
+  overflow: hidden;
+}
+
+th:not(:last-child),
+td:not(:last-child) {
+  overflow: hidden;
+}
+
+th,
+td {
+  width: 200px;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  background-color: #fff;
+  /* overflow: hidden; */
+}
+
+th:last-child,
+td:last-child {
+  /* border-right: 0; */
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  background-color: rgb(253, 252, 252);
+}
