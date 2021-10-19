@@ -5,27 +5,6 @@ import SearchComponent from './SearchComponent';
 const onChange = jest.fn();
 
 describe('SearchContact component', () => {
-  it('SearchContact renders', () => {
-    render(
-      <SearchComponent value="" onChange={onChange}>
-        children
-      </SearchComponent>,
-    );
-
-    expect(screen.getByText(/children/i)).toBeInTheDocument();
-  });
-
-  it('SearchContact renders without children', () => {
-    render(<SearchComponent value="" onChange={onChange} />);
-
-    expect(screen.getByText(/search/i)).toBeInTheDocument();
-  });
-
-  it('SearchContact renders without placeholder', () => {
-    render(<SearchComponent value="" onChange={onChange} />);
-
-    expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
-  });
 
   it('SearchContact renders custom placeholder', () => {
     render(<SearchComponent value="" onChange={onChange} placeholder='Input name'/>);
@@ -35,9 +14,8 @@ describe('SearchContact component', () => {
 
   it('onChange works', () => {
     render(
-      <SearchComponent value="" onChange={onChange}>
-        children
-      </SearchComponent>,
+      <SearchComponent value="" onChange={onChange} />
+
     );
 
     userEvent.type(screen.getByRole('textbox'), 'Name')

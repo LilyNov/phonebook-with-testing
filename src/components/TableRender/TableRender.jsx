@@ -1,7 +1,5 @@
 import React, { useMemo, useState, useEffect, Fragment } from 'react'
-import { useTable, useSortBy, useGlobalFilter, useRowSelect, useFilters, useExpanded, useBlockLayout } from 'react-table'
-import {useSticky} from 'react-table-sticky'
-import { Table } from 'reactstrap';
+import { useTable, useSortBy, useGlobalFilter, useRowSelect, useFilters, useExpanded} from 'react-table'
 import SearchComponent from '../SearchComponent'
 import Checkbox from './Checkbox'
 // import FilterColumn from './FilterColumn'
@@ -11,7 +9,6 @@ import styles from './TableRender.module.css'
 
 const TableRender = () => {
   const [data, setData] = useState([]);
-  console.log(data);
   
   useEffect(() => {
     const doFetch = async () => {
@@ -23,20 +20,16 @@ const TableRender = () => {
     doFetch();
   }, []);
 
-  console.log(data);
-
     const columns = useMemo(
       () => [
       {
         Header: 'NDID',
         accessor: 'id.name',
-        // sticky: 'left',
       },
       {
         Header: 'Title',
         accessor: 'name.title',
         expandSubRows: true,
-        // sticky: 'left',
       },
       {
         Header: 'First Name',
@@ -109,9 +102,8 @@ const TableRender = () => {
 
   return (
     <>
-      <SearchComponent value={globalFilter} onChange={(e) => setGlobalFilter(e.currentTarget.value)}>
-        Search for table:
-      </SearchComponent>
+      <SearchComponent value={globalFilter} onChange={(e) => setGlobalFilter(e.currentTarget.value)} />
+
       <div bordered hover {...getTableProps()} className={styles.table}>
           <div className={styles.tableHeader}>
             {headerGroups.map((headerGroup) => (

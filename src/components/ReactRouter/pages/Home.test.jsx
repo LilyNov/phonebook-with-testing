@@ -12,7 +12,6 @@ describe('Home component', () => {
             </Provider>
         )
         expect(screen.getByTestId('list-of-contacts')).toBeInTheDocument()
-        expect(screen.getByText(/search contact/i)).toBeInTheDocument()
         screen.debug()
     })
 

@@ -1,7 +1,7 @@
 import styles from './SearchComponent.module.css'
 import cn from 'classnames'
 
-const SearchComponent = ({value, onChange, children = 'Search', placeholder = 'Search...' }) => {
+const SearchComponent = ({value, onChange, placeholder = 'Search...' }) => {
     const inputClass = cn({
         [styles.input]: true,
         [styles.filledCorrect]: value?.length >= 2,
@@ -9,8 +9,8 @@ const SearchComponent = ({value, onChange, children = 'Search', placeholder = 'S
     })
     
     return (
-        <label className={styles.label}>
-            {children}
+        <form className={styles.form}>
+            <label className={styles.label}>
             <input
                 className={inputClass}
                 type='text'
@@ -19,7 +19,10 @@ const SearchComponent = ({value, onChange, children = 'Search', placeholder = 'S
                 placeholder={placeholder}
                 data-testid='input-searchContact'
             />
+            <button className={styles.button}>P</button>
         </label>
+        </form>
+        
     )
 }
 
